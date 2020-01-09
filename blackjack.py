@@ -8,7 +8,7 @@ import random
 
 import requests
 
-from game_view import GameView, FancyView, Move
+from game_view import GameView, TournamentView, Move
 from strategy import Strategy, HumanStrategy
 
 
@@ -348,35 +348,6 @@ class GameController:
         for (module_loader, name, is_pkg) in pkgutil.iter_modules([pkg_dir]):
             importlib.import_module('.' + name, 'ex13_blackjack')
         return list(filter(lambda x: x.__name__ != HumanStrategy.__name__, Strategy.__subclasses__()))
-
-
-class TournamentView(FancyView):
-    """Game view for tournament"""
-
-    def __init__(self, players_count, rounds_count):
-        """Init."""
-        self.players_count = players_count
-        self.rounds_count = rounds_count
-
-    def ask_move(self) -> Move:
-        """Ask move."""
-        raise Exception("You should not ask for move!")
-
-    def ask_decks_count(self) -> int:
-        """Ask decks count."""
-        return (self.players_count + 1) * 5 * self.rounds_count // 52
-
-    def ask_players_count(self) -> int:
-        """Ask players count"""
-        return 0
-
-    def ask_bots_count(self) -> int:
-        """Ask bots count."""
-        return 1
-
-    def ask_name(self, player_nr: int) -> str:
-        """Ask name."""
-        raise Exception("You should not ask for name!")
 
 
 if __name__ == '__main__':

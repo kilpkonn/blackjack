@@ -1,6 +1,5 @@
 """Deck."""
 import itertools
-import json
 from typing import Optional, List
 
 import requests
@@ -80,10 +79,6 @@ class Deck:
 
     def _request(self, url: str) -> dict:
         """Update deck."""
-        print(url)
-        print(requests.get(url))
-        print(requests.get(url).text)
-        #return json.loads(requests.get(url).text)
         return requests.get(url).json()
 
     @staticmethod

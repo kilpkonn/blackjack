@@ -2,6 +2,7 @@
 from abc import abstractmethod
 from enum import Enum
 
+
 class Color:
     """
     Colors class.
@@ -477,3 +478,32 @@ class FancyView(GameView):
               + f"""{Color.Fg.green}double down {Color.Fg.light_green}(double your bet and receive 1 last card)
         {Color.Fg.light_blue}surrender {Color.Fg.pink}(q) {Color.Fg.orange}-> """
               + f"""{Color.Fg.light_green}surrender {Color.Fg.light_green}(give up :( ){Color.reset}""")
+
+
+class TournamentView(FancyView):
+    """Game view for tournament"""
+
+    def __init__(self, players_count, rounds_count):
+        """Init."""
+        self.players_count = players_count
+        self.rounds_count = rounds_count
+
+    def ask_move(self) -> Move:
+        """Ask move."""
+        raise Exception("You should not ask for move!")
+
+    def ask_decks_count(self) -> int:
+        """Ask decks count."""
+        return (self.players_count + 1) * 5 * self.rounds_count // 52
+
+    def ask_players_count(self) -> int:
+        """Ask players count"""
+        return 0
+
+    def ask_bots_count(self) -> int:
+        """Ask bots count."""
+        return 1
+
+    def ask_name(self, player_nr: int) -> str:
+        """Ask name."""
+        raise Exception("You should not ask for name!")
